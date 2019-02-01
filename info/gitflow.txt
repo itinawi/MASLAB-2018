@@ -1,0 +1,17 @@
+Here’s a guide to be able to write and share code using good software engineering practices.
+
+1. Install git on your computer (Google how to do this)
+
+2. Create an MIT github account: https://kb.mit.edu/confluence/display/istcontrib/GitHub.mit.edu+Overview 
+
+3. Clone the repository by typing this into your terminal/putty:
+	a. Git clone git@github.mit.edu:MASLAB-2018/team-1.git
+
+4. Before you edit code ALWAYS type “git pull” into your putty/terminal (after you’ve navigated to the git repository of course using cd/ls/terminal commands). This syncs your current version of the code with the global one. You may need to commit your changes before so as not to lose them (see next step).
+
+5. When you add it a file and want to share it with everyone, type:
+	a. Git commit -am “I changed this and that in file X”
+
+6. After committing, you can either continue working or push your changes to everyone else’s computer by writing:
+	a. Git push origin master
+

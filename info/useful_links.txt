@@ -1,0 +1,32 @@
+============================================================================================
+ROS Tutorials (http://wiki.ros.org/ROS/Tutorials/):
+
+http://wiki.ros.org/Nodes
+http://wiki.ros.org/Messages
+http://wiki.ros.org/Topics
+http://wiki.ros.org/ROS/Tutorials/UnderstandingTopics
+http://wiki.ros.org/ROS/Tutorials/UnderstandingServicesParams
+http://wiki.ros.org/ROS/Tutorials/WritingPublisherSubscriber%28python%29
+http://wiki.ros.org/ROS/Tutorials/ExaminingPublisherSubscriber
+http://wiki.ros.org/ROS/Tutorials/WritingServiceClient%28python%29
+http://wiki.ros.org/ROS/Tutorials/UnderstandingNodes
+
+============================================================================================
+ROS Python Overview
+http://wiki.ros.org/rospy/Overview/
+
+============================================================================================
+ROS Overview:
+
+Nodes: A node is an executable that uses ROS to communicate with other nodes.
+
+Messages: ROS data type used when subscribing or publishing to a topic.
+
+Topics: Nodes can publish messages to a topic as well as subscribe to a topic to receive messages.
+
+Master: Name service for ROS (i.e. helps nodes find each other)
+
+rosout: ROS equivalent of stdout/stderr
+
+roscore: Master + rosout + parameter server (parameter server will be introduced later)
+

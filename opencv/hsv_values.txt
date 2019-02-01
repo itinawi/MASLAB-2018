@@ -1,0 +1,3 @@
+
+If i have it in 255 range I have to scale it to 255 range.
+Red: h: [0, 0.1]; s: [0.4, 1], v: [0.4, 1] 

@@ -1,0 +1,61 @@
+HOW TO ADD CUSTOM USB PATH NAMES
+(Create symlink which points to usb path even if usb number is assigned incorrectly on startup)
+
+Rules live in /etc/udev/rules.d/99-usb-serial.rules
+
+Create a new line with the format: (use "sudo nano")
+
+SUBSYSTEM=="usb",ATTRS{serial}=="A601EOOA",SYMLINK+="IMU" where you replace "IMU" which your custon device path
+
+You can get your ATTRS{serial} by running:
+
+lsusb-> get your Bus and Device number (eg: Bus 002 Device 004: ID 0403:6001 Future Technology Devices International, Ltd FT232 Serial (UART) IC)
+
+run:
+udevadm info -a -p $(udevadm info -q path -n /dev/bus/usb/<bus>/<device>)
+
+which gives you: (ignore parents) 
+looking at device '/devices/pci0000:00/0000:00:1d.0/usb2/2-1/2-1.7':
+    KERNEL=="2-1.7"
+    SUBSYSTEM=="usb"
+    DRIVER=="usb"
+    ATTR{bDeviceSubClass}=="00"
+    ATTR{bDeviceProtocol}=="00"
+    ATTR{devpath}=="1.7"
+    ATTR{idVendor}=="0403"
+    ATTR{speed}=="12"
+    ATTR{bNumInterfaces}==" 1"
+    ATTR{bConfigurationValue}=="1"
+    ATTR{bMaxPacketSize0}=="8"
+    ATTR{busnum}=="2"
+    ATTR{devnum}=="10"
+    ATTR{configuration}==""
+    ATTR{bMaxPower}=="90mA"
+    ATTR{authorized}=="1"
+    ATTR{bmAttributes}=="80"
+    ATTR{bNumConfigurations}=="1"
+    ATTR{maxchild}=="0"
+    ATTR{bcdDevice}=="1000"
+    ATTR{avoid_reset_quirk}=="0"
+    ATTR{quirks}=="0x0"
+    ATTR{serial}=="DB00L0C8"
+    ATTR{version}==" 2.00"
+    ATTR{urbnum}=="16"
+    ATTR{ltm_capable}=="no"
+    ATTR{manufacturer}=="FTDI"
+    ATTR{removable}=="unknown"
+    ATTR{idProduct}=="6015"
+    ATTR{bDeviceClass}=="00"
+    ATTR{product}=="FT230X Basic UART"
+
+Which contains ATTR{serial} (note here it's ATTR, but in rules it's ATTRS)
+
+After you are done, restart (I think you can just unplug/plug in but it's easier to restart than unplug IMU)
+
+Now if you do a sudo screen /dev/IMU (replace IMU with custom name) you should be able to see a serial stream
+Also an ls -l /dev/IMU should show:
+lrwxrwxrwx 1 root root 7 Aug 17 17:05 /dev/IMU -> ttyUSB1
+pointing to the (sometimes) arbitrary number
+
+You can now update config.h or whatever with your custom path
+
